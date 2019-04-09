@@ -27,7 +27,7 @@
   with_items:
     - "{{ git_repositories }}"
   when:
-    - git_user_home_exists.stat.isdir == True | default(False)
+    - git_user_home_exists.stat.isdir | default(False)
 
 - name: "Ensure {{ git_user_name }} is the owner of {{ git_user_home }}"
   file:
@@ -45,4 +45,3 @@
   with_items:
     - "{{ git_repositories }}"
   when: git_push_repositories
-

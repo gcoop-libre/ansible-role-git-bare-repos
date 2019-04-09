@@ -1,8 +1,9 @@
 ---
 
 - name: "git push to {{ inventory_hostname }}:{{ item.name }}"
-  local_action: shell git push {{ inventory_hostname }} {{ item.branch | default('master')}}
+  shell: git push {{ inventory_hostname }} {{ item.branch | default('master') }}
   args:
     chdir: "{{ item.local_dir }}"
   become: no
   changed_when: False
+  delegate_to: localhost

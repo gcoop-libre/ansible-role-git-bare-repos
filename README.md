@@ -1,4 +1,4 @@
-# Ansible Role: gcop-libre.git-bare-repos
+# Ansible Role: gcoop-libre.git-bare-repos
 
 An Ansible Role that create git bare repositories on remote host and push from local.
 
