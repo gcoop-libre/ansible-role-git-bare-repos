@@ -1,0 +1,9 @@
+---
+
+- name: git remote add {{ inventory_hostname }} for {{ item.name }}
+  local_action: shell git remote add {{ inventory_hostname }} git@{{ ansible_hostname }}:{{ item.name }}
+  args:
+    chdir: "{{ item.local_dir }}"
+  ignore_errors: yes
+  become: no
+  changed_when: False

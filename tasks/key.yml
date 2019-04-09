@@ -1,0 +1,8 @@
+---
+
+- name: Create authorized_keys
+  authorized_key:
+    user: "{{ git_user_name }}"
+    key: "{{ lookup('file', item) }}"
+    state: present
+  ignore_errors: yes

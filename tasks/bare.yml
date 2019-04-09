@@ -1,0 +1,7 @@
+---
+
+- name: "Create git repository {{ item.name }}"
+  command: "git init --bare {{ item.name }} --shared={{ git_shared_umask }}"
+  args:
+    chdir: "{{ git_user_home }}"
+  changed_when: False

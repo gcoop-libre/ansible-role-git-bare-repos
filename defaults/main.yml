@@ -1,0 +1,18 @@
+---
+git_user_name: git
+git_user_group: git
+git_user_shell: /usr/bin/git-sh
+git_user_home: /home/git
+git_user_home_mode: '0750'
+git_shared_umask: '0740'
+
+git_packages:
+  - git
+  - git-sh
+
+git_repositories: []
+
+git_push_repositories: True
+
+git_public_keys_files:
+  - '~/.ssh/id_rsa.pub'

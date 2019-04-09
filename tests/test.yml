@@ -1,0 +1,9 @@
+---
+- hosts: [test]
+  become: yes
+
+  roles:
+    - role: gcoop-libre.git-bare-repos
+      git_repositories:
+        - name: ansible-test.git
+          local_dir: /home/git/ansible-test.git/
