@@ -1,6 +1,7 @@
 galaxy_info:
+  role_name: git-bare-repos
   author: Osiris Alejandro Gomez
-  description: Create git bare repositories
+  description: Create git bare repositories on remote host and push from local
   company: gcoop Cooperativa de Software Libre
   license: GPLv3
   min_ansible_version: 2.5
