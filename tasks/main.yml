@@ -1,0 +1,48 @@
+---
+
+- name: Install git packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ git_packages }}"
+
+- name: "Create {{ git_user_name }} user"
+  user:
+    name: "{{ git_user_name }}"
+    shell: "{{ git_user_shell }}"
+    home: "{{ git_user_home }}"
+    state: present
+
+- include_tasks: key.yml
+  with_items:
+    - "{{ git_public_keys_files }}"
+
+- name: Verify home directory
+  stat:
+    path: "{{ git_user_home }}"
+  register: git_user_home_exists
+
+- include_tasks: bare.yml
+  with_items:
+    - "{{ git_repositories }}"
+  when:
+    - git_user_home_exists.stat.isdir == True | default(False)
+
+- name: "Ensure {{ git_user_name }} is the owner of {{ git_user_home }}"
+  file:
+    dest: "{{ git_user_home }}"
+    owner: "{{ git_user_name }}"
+    group: "{{ git_user_name }}"
+    recurse: yes
+
+- include_tasks: remote.yml
+  with_items:
+    - "{{ git_repositories }}"
+  when: git_push_repositories
+
+- include_tasks: push.yml
+  with_items:
+    - "{{ git_repositories }}"
+  when: git_push_repositories
+
