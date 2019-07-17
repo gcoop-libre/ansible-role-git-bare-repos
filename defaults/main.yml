@@ -12,6 +12,7 @@ git_packages:
 
 git_repositories: []
 
+git_init_repositories: True
 git_push_repositories: True
 
 git_public_keys_files:

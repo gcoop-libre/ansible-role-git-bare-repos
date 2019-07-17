@@ -27,6 +27,7 @@
   with_items:
     - "{{ git_repositories }}"
   when:
+    - git_init_repositories
     - git_user_home_exists.stat.isdir | default(False)
 
 - name: "Ensure {{ git_user_name }} is the owner of {{ git_user_home }}"
